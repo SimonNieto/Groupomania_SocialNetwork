@@ -61,7 +61,7 @@
                     Un mot de passe est requis !
                   </div>
                 </div>
-                <button class="btn btn-primary btn-sm btn-block">
+                <button class="btn text-light bg-dark btn-sm btn-block">
                   Se connecter
                 </button>
               </form>

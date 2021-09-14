@@ -19,8 +19,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="row w-100 justify-content-spacebetween">
-                            <div class="col-6"><a href="/home" class="btn btn-secondary btn-block">Annuler</a></div>
-                            <div class="col-6"><button type="submit" @click.prevent="deleteMessage()" class="btn btn-success btn-block">Valider</button></div>
+                            <div class="col-6"><a href="/home" class="btn text-light bg-dark btn-block">Annuler</a></div>
+                            <div class="col-6"><button type="submit" @click.prevent="deleteMessage()" class="btn text-light bg-dark btn-block">Valider</button></div>
                         </div>
                     </div>
                 </form>
@@ -35,7 +35,7 @@ import router from "../router"
 import Swal from "sweetalert2"
 
 export default {
-    name: "Message Drop",
+    name: "MessageDrop",
     data() {
         return {
             newImage: "",

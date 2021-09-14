@@ -55,10 +55,13 @@ export default {
     },
     methods: {
         handleSubmit() {
+            const regexPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
             const InputName = this.InputName
             const InputEmail = this.InputEmail
             const InputPassword = this.InputPassword
-            this.submitted = true;
+            let isPasswordValid = regexPassword.test(InputPassword);
+            if (isPasswordValid) {
+                this.submitted = true;
             axios.post("http://localhost:3000/api/auth/signup", {email: InputEmail, password: InputPassword, userName: InputName })
             .then(function (response) {
                 if (response.statusText==="Created") {
@@ -112,6 +115,17 @@ export default {
                     timerProgressBar: true
                 })
             });
+            } else {
+                Swal.fire({
+                    title: "Le password doit contenir 8 caractères dont 1 majuscule, 1 caractère spécial, 1 chiffre",
+                    text: "",
+                    icon: "error",
+                    timer: 1000,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                })
+            }
+            
         }
     }
 }

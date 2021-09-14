@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8" id="allMessages">
-                   <b-button @click="$bvModal.show('modalAddMessage')" href="" data-toggle="modal" data-target="#modalAddMessage" class="my-2 btn btn-sm btn-block btn-success" >Poster un message...</b-button>
+                   <b-button @click="$bvModal.show('modalAddMessage')" href="" data-toggle="modal" data-target="#modalAddMessage" class="my-2 btn btn-sm btn-block " >Poster un message...</b-button>
                     <b-modal hide-footer hide-header class="modal fade" id="modalAddMessage" tabindex="-1" aria-labelledby="modalAddMessage" aria-hidden="true" :ok-disabled="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -31,7 +31,7 @@
                                     <div class="modal-footer">
                                         <div class="row w-100 justify-content-spacebetween">
                                             <div class="col-6"><b-button id="closemodal" @click="$bvModal.hide('modalAddMessage')" data-dismiss="modal" class="btn btn-secondary btn-block">Annuler</b-button></div>
-                                            <div class="col-6"><button type="submit" @click.prevent="addNewMessage()" class="btn btn-success btn-block">Valider</button></div>
+                                            <div class="col-6"><button type="submit" @click.prevent="addNewMessage()" class="btn text-light bg-dark btn-block">Valider</button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -51,17 +51,21 @@
                                     le {{message.createdAt.slice(0,10).split('-').reverse().join('/') + ' à ' + message.createdAt.slice(11,16)}}
                                 </span>
                             </div>                                
-                            <div v-if="message.UserId == 10 || this.isAdmin == 'true'">
-                                <a :href="'/message/edit/' + message.id"><img src="/images/edit.svg" class="m-1 p-0" alt="Editer le message" title="Editer le message"/></a>
-                                <a :href="'/message/drop/' + message.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
-                            </div>                               
+                            <div v-if="isAdmin == 'true'">
+
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                            </div>
+                            <div v-if="(message.UserId == currentUserId) && (isAdmin == 'false') ">
+                                    <a :href="'/message/edit/' + message.id"><img src="/images/edit.svg" class="m-1 p-0" alt="Editer le message" title="Editer le message"/></a>
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                            </div>                              
                         </div>
                         <div class="card-body text-dark text-left">
                             <p class="small" v-if="message.message !== ''"> {{message.message}} </p>
                             <img class="w-100" :src="message.messageUrl" alt="image du message" v-if="message.messageUrl !== ''">
                         </div>
                         <div class="card-footer bg-light text-dark text-left m-0">
-                            <a :href="'/commentaires/' + message.id" class="h6 small">Voir les commentaires</a>
+                            <a :href="'/commentaires/' + message.id" class="h6 text-dark">Voir les commentaires</a>
                         </div>
                     </div>
                     <noMessage v-if="noMessage"></noMessage>

@@ -28,8 +28,8 @@
                         </div>
                     </div>
                      <div class="row my-2">
-                        <div class="col-6 pr-1"><a href="/home" class="btn btn-sm btn-block btn-success">...retour aux messages</a></div>
-                        <div class="col-6 pl-1"><a href="/compte" class="btn btn-sm btn-block btn-primary">retour à mon compte...</a></div>
+                        <div class="col-6 pr-1"><a href="/home" class="btn btn-sm btn-block text-light bg-dark">...retour aux messages</a></div>
+                        <div class="col-6 pl-1"><a href="/compte" class="btn btn-sm btn-block text-light bg-dark">retour à mon compte...</a></div>
                     </div>
                     <noUserMessage v-if="noUserMessage"></noUserMessage>
                 </div>

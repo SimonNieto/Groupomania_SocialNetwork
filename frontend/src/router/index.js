@@ -62,6 +62,7 @@ const routes = [
         name: "MessageEdit",
         component: () => import("../components/MessageEdit")
     },
+    
     {
       path: "/message/drop/:id",
       name: "MessageDrop",

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
-                    <router-link to="/home" class="my-2 btn btn-sm btn-block btn-danger">...retour aux messages</router-link>                
+                    <router-link to="/home" class="my-2 btn btn-sm btn-block bg-white">...retour aux messages</router-link>                
                 </div>
                 <div class="col-12 col-md-10 col-lg-8" id="OneMessage">
                     <!-- VOICI UN MESSAGE -->
@@ -17,10 +17,13 @@
                                     le {{oneMessage.createdAt}}
                                 </span>
                             </div>
-                            <div :id="'adus' + oneMessage.id" v-if="oneMessage.userId == this.currentUserId || this.isAdmin == 'true'">
+                            <div :id="'adus' + oneMessage.id" v-if="oneMessage.UserId == currentUserId || isAdmin == 'false'">
                                 <a :href="'/message/edit/' + oneMessage.id"><img src="/images/edit.svg" class="m-1 p-0" alt="Editer le message" title="Editer le message"/></a>
                                 <a :href="'/message/drop/' + oneMessage.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
-                            </div>                               
+                            </div>
+                            <div :id="'adus' + oneMessage.id" v-if="isAdmin == 'true'">
+                                <a :href="'/message/drop/' + oneMessage.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                            </div>                                 
                         </div>
                         <div class="card-body text-dark text-left" :id="'MessageContainer' + oneMessage.id">
                         <p class="small" v-if="oneMessage.message !== ''"> {{oneMessage.message}} </p>
@@ -35,7 +38,7 @@
                     <!-- FIN DU MESSAGE -->
                 </div>
                 <div class="col-12 col-md-10 col-lg-8">
-                    <b-button  @click="$bvModal.show('modalAddComment')" href="" data-toggle="modal" data-target="#modalAddComment" class="my-2 btn btn-sm btn-block btn-success">Poster un commentaire...</b-button>
+                    <b-button  @click="$bvModal.show('modalAddComment')" href="" data-toggle="modal" data-target="#modalAddComment" class="my-2 btn btn-sm btn-block text-black">Poster un commentaire...</b-button>
                     <b-modal  hide-footer hide-header class="modal fade" id="modalAddComment" tabindex="-1" aria-labelledby="modalAddComment" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -52,8 +55,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <div class="row w-100 justify-content-spacebetween">
-                                            <div class="col-6"><a @click="$bvModal.hide('modalAddComment')" data-dismiss="modal" class="btn btn-secondary btn-block">Annuler</a></div>
-                                            <div class="col-6"><button type="submit" @click.prevent="addNewComment()" class="btn btn-success btn-block">Valider</button></div>
+                                            <div class="col-6"><a @click="$bvModal.hide('modalAddComment')" data-dismiss="modal" class="btn text-light bg-dark btn-block">Annuler</a></div>
+                                            <div class="col-6"><button type="submit" @click.prevent="addNewComment()" class="btn text-light bg-dark btn-block">Valider</button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -70,7 +73,10 @@
                                     <span v-if="!comment.User.isActive" class="small text-danger">(supprimé)</span>, 
                                     le {{comment.createdAt.slice(0,10).split('-').reverse().join('/')}}
                                 </span>
-                                <div :id="'adcom' + comment.id"  v-if="comment.UserId == 10 || this.isAdmin == 'true'">
+                                <div :id="'adcom' + comment.id"  v-if="isAdmin == 'true'">
+                                    <a :href="'/commentaire/drop/' + comment.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                                </div>
+                                <div :id="'adcom' + comment.id"  v-if="(comment.UserId == currentUserId) && (isAdmin == 'false')">
                                     <a :href="'/commentaire/edit/' + comment.id"><img src="/images/edit.svg" class="m-1 p-0" alt="Editer le message" title="Editer le message"/></a>
                                     <a :href="'/commentaire/drop/' + comment.id"><img src="/images/drop.svg" class="m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
                                 </div>

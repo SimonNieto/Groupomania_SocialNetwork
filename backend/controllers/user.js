@@ -44,3 +44,14 @@ exports.modifyUser = (req, res, next) => {
     .then(() => res.status(200).json({ ...userObject }))
     .catch(error => res.status(400).json({ error }))
 }
+
+exports.deleteUser = (req, res) => {
+	const id = req.params.id;
+	User.destroy({
+	  where: { id: id }
+	}).then(() => {
+		res.status(200).send('Customer has been deleted!');
+	}).catch(err => {
+		res.status(500).send("Error -> " + err);
+	});
+}

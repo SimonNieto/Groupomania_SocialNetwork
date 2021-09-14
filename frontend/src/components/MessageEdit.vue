@@ -25,8 +25,8 @@
                     </div>
                     <div class="modal-footer">
                         <div class="row w-100 justify-content-spacebetween">
-                            <div class="col-6"><a @click="$bvModal.hide('modalEditMessage')" href="/home" class="btn btn-secondary btn-block">Annuler</a></div>
-                            <div class="col-6"><button type="submit" @click.prevent="updateMessage()" class="btn btn-success btn-block">Valider</button></div>
+                            <div class="col-6"><a @click="$bvModal.hide('modalEditMessage')" href="/home" class="btn text-light bg-dark btn-block">Annuler</a></div>
+                            <div class="col-6"><button type="submit" @click.prevent="updateMessage()" class="btn text-light bg-dark btn-block">Valider</button></div>
                         </div>
                     </div>
                 </form>

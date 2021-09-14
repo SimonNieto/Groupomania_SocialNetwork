@@ -5,7 +5,7 @@
        <div class="col-6 col-md-5 col-lg-3">
           <router-link
             to="/home"
-            class="my-2 btn btn-sm btn-block btn-success"
+            class="my-2 btn btn-sm btn-block "
             ><img src="../assets/back-arrow.svg" class="img-fluid mr-2"/> ...retour aux messages</router-link>
        </div>
         </div>
@@ -155,10 +155,10 @@
                     class="btn btn-sm btn-block btn-danger"
                     >Supprimer mon compte !</b-button
                   >
-                  <a
+                  <button
                     @click.prevent="disconnectAccount()"
                     class="btn btn-sm btn-block btn-danger"
-                    >Se déconnecter !</a
+                    >Se déconnecter !</button
                   >
                   <b-modal
                     hide-footer 
@@ -361,16 +361,7 @@ export default {
         });
     },
     deleteAccount() {
-      axios
-        .put(
-          "http://localhost:3000/api/users/" + localStorage.getItem("userId"),
-          { isActive: false },
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        )
+      axios.delete("http://127.0.0.1:3000/api/users/" + localStorage.getItem("userId"), { headers: { "Authorization":"Bearer " + localStorage.getItem("token") }})
         .then(() => {
           localStorage.clear();
           Swal.fire({
