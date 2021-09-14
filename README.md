@@ -16,7 +16,7 @@ Ouvrir le dossier Frontend dans le terminal de votre éditeur puis exécuter la 
 
 puis
 
-    npm start
+    npm start ou vue ui
 
 si le navigateur ne s'ouvre pas automatiquement allez à :
 
@@ -30,7 +30,7 @@ Ouvrir le dossier Backend dans le terminal de votre éditeur puis exécuter la c
 
 puis
 
-    npm start ou nodemon serve
+    npm start ou node server
 
 ## Base de données
 
